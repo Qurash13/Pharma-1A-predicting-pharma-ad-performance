@@ -1,121 +1,157 @@
-# AI Studio Challenge Project Title
+# Predicting Pharma Ad Performance
 
-> 💡 **Note for the team:** This is just a template. Update the above title with your AI Studio Challenge Project name. Remove all guidance notes and example text in this template and populate this README with your own content. You can work on this README throughout AI Studio, and get feedback from your AI Studio Coach and Challenge Advisor before finalizing it.  
+Break Through Tech AI Studio Challenge Project, Fall 2026
+Host company: **WebMD** | Team: **Pharma 1A**
+
+Forecasting second half pharmaceutical campaign performance from January through June historical data.
 
 ---
 
 ### 👥 **Team Members**
 
-**Example:**
+| Name | GitHub Handle | Contribution |
+|------|---------------|--------------|
+| Rhea Coulthurst John | @Qurash13 | *To be updated* |
+| Nida Syed | *TBD* | *To be updated* |
+| Abhi Segu | *TBD* | *To be updated* |
+| Bakari Kerr | *TBD* | *To be updated* |
+| Emma Zhang | *TBD* | *To be updated* |
+| Tim Hsu | *TBD* | *To be updated* |
 
-| Name             | GitHub Handle | Contribution                                                             |
-|------------------|---------------|--------------------------------------------------------------------------|
-| Taylor Nguyen    | @taylornguyen | Data exploration, visualization, overall project coordination            |
-| Jordan Ramirez   | @jramirez     | Data collection, exploratory data analysis (EDA), dataset documentation  |
-| Amina Hassan     | @aminahassan  | Data preprocessing, feature engineering, data validation                 |
-| Priya Mehta      | @pmehta       | Model selection, hyperparameter tuning, model training and optimization  |
-| Chris Park       | @chrispark    | Model evaluation, performance analysis, results interpretation           |
+### 🧭 **Program Support**
+
+| Role | Name |
+|------|------|
+| AI Studio Coach | Anushka Naik |
+| Challenge Advisor | Kimia Naeiji |
+
+Biweekly check ins are held with our Challenge Advisor.
+
+**Project links**
+
+- [Challenge Project Overview](./Challenge-Project-Overview.md)
+- [Break Through Tech source repository](https://github.com/Break-Through-Tech/Pharma-1A-predicting-pharma-ad-performance)
 
 ---
 
 ## 🎯 **Project Highlights**
 
-**Example:**
-
-- Developed a machine learning model using `[model type/technique]` to address `[challenge project task]`.
-- Achieved `[key metric or result]`, demonstrating `[value or impact]` for `[host company]`.
-- Generated actionable insights to inform business decisions at `[host company or stakeholders]`.
-- Implemented `[specific methodology]` to address industry constraints or expectations.
+- Building regression models to predict **total spend**, **cost per engagement (CPE)**, and **engagement volume** for second half pharmaceutical campaigns on WebMD.
+- Predictions are broken out by **tactic type**, **client segment**, and **healthcare professional specialty**.
+- Target performance on the held out H2 test set: **MAPE below 30 percent** and **R² above 0.55**.
+- Beyond raw accuracy, the work surfaces which campaign characteristics drive higher CPE, for example specialty, tactic, and geography combinations, so the findings translate into media planning decisions.
+- Every data decision, model choice, and evaluation step is documented in a reproducible notebook.
 
 ---
 
 ## 👩🏽‍💻 **Setup and Installation**
 
-**Provide step-by-step instructions so someone else can run your code and reproduce your results. Depending on your setup, include:**
+*To be completed as the codebase develops.* Planned contents of this section:
 
-* How to clone the repository
-* How to install dependencies
-* How to set up the environment
-* How to access the dataset(s)
-* How to run the notebook or scripts
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Qurash13/Pharma-1A-predicting-pharma-ad-performance.git
+   cd Pharma-1A-predicting-pharma-ad-performance
+   ```
+2. **Create the environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate      # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+3. **Core libraries:** pandas, scikit-learn, XGBoost, SHAP, matplotlib, seaborn
+4. **Dataset access:** *provided by WebMD through the AI Studio program, instructions to be added*
+5. **Run the notebooks** in `notebooks/` in numbered order
 
 ---
 
 ## 🏗️ **Project Overview**
 
-**Describe:**
+This project is part of the **Break Through Tech AI Program**, a national initiative that pairs undergraduate students with industry partners for a semester long applied machine learning studio. Teams work alongside an AI Studio Coach and a Challenge Advisor from the host company to deliver a real solution to a real business problem.
 
-- How this project is connected to the Break Through Tech AI Program
-- Your AI Studio host company and the project objective and scope
-- The real-world significance of the problem and the potential impact of your work
+Our host company is **WebMD**, one of the largest online health information platforms and a major channel for pharmaceutical advertising aimed at healthcare professionals. WebMD runs campaigns across many tactic types, client segments, and physician specialties, and planning those campaigns well depends on knowing how they are likely to perform before the budget is committed.
+
+The objective is to use campaign data from January through June to forecast key second half metrics: total spend, cost per engagement, and engagement volume. Accurate forecasts help media planners allocate budget toward tactics and audiences that deliver engagement efficiently, and help set realistic expectations with pharmaceutical clients. The interpretability side matters as much as the accuracy. Knowing *which* combinations of specialty, tactic, and geography move CPE gives the business something it can act on, not just a number.
+
+**Timeline**
+
+| Month | Focus |
+|-------|-------|
+| September | Data cleaning, exploratory data analysis, data quality audit, produce a cleaned dataset |
+| October | Feature engineering, baseline and tree based models, performance comparison |
+| November | Hyperparameter tuning, final evaluation, presentation deck, business recommendations |
 
 ---
 
 ## 📊 **Data Exploration**
 
-**You might consider describing the following (as applicable):**
+*In progress. This section will cover:*
 
-* The dataset(s) used: origin, format, size, type of data
-* Data exploration and preprocessing approaches
-* Insights from your Exploratory Data Analysis (EDA)
-* Challenges and assumptions when working with the dataset(s)
+* The WebMD campaign dataset: origin, format, size, and the fields describing tactic type, client segment, healthcare professional specialty, geography, spend, and engagement
+* Cleaning and preprocessing steps, including how missing and inconsistent records were handled
+* Findings from exploratory data analysis, such as spend and engagement distributions, seasonality between H1 and H2, and differences across specialties and tactics
+* Data quality issues found during the audit, and the assumptions made when working around them
 
-**Potential visualizations to include:**
-
-* Plots, charts, heatmaps, feature visualizations, sample dataset images
+**Planned visualizations:** spend and CPE distributions, engagement by specialty and tactic, correlation heatmap, time series of monthly campaign volume.
 
 ---
 
 ## 🧠 **Model Development**
 
-**You might consider describing the following (as applicable):**
+*In progress. Planned approach:*
 
-* Model(s) used (e.g., CNN with transfer learning, regression models)
-* Feature selection and Hyperparameter tuning strategies
-* Training setup (e.g., % of data for training/validation, evaluation metric, baseline performance)
-
+* **Baseline:** linear and regularized regression models to establish a reference point for each target metric
+* **Primary models:** tree based regressors, including random forest and XGBoost, chosen for their handling of mixed categorical and numerical campaign features
+* **Targets:** total spend, cost per engagement, and engagement volume, modeled separately with multi output regression explored as a stretch goal
+* **Feature engineering:** encoding of tactic type, client segment, and specialty, geography level aggregates, and H1 derived rate features
+* **Training setup:** H1 data for training and validation, held out H2 data as the test set, with MAPE and R² as the primary evaluation metrics
 
 ---
 
 ## 📈 **Results & Key Findings**
 
-**You might consider describing the following (as applicable):**
+*To be completed after model evaluation.* This section will report:
 
-* Performance metrics (e.g., Accuracy, F1 score, RMSE)
-* How your model performed
-* Insights from evaluating model fairness
+* MAPE and R² for each target metric against the H2 test set, measured against the MAPE below 30 percent and R² above 0.55 targets
+* How the tree based models compare to the regression baseline
+* The campaign characteristics most associated with high and low CPE
+* Fairness and consistency of performance across client segments and specialties, so no group of campaigns is systematically mispredicted
 
-**Potential visualizations to include:**
-
-* Confusion matrix, precision-recall curve, feature importance plot, prediction distribution, outputs from fairness or explainability tools
+**Planned visualizations:** predicted versus actual plots, residual distributions, feature importance rankings, SHAP summary plots.
 
 ---
 
 ## 🚀 **Next Steps**
 
-**You might consider addressing the following (as applicable):**
+Stretch goals and open directions for the project:
 
-* What are some of the limitations of your model?
-* What would you do differently with more time/resources?
-* What additional datasets or techniques would you explore?
+* **Multi output regression** to predict spend, CPE, and engagement jointly rather than in separate models
+* **Clustering pipelines** to group campaigns by behavior profile before modeling
+* **Time series ensembles** to capture seasonality that a flat H1 to H2 split may miss
+* **SHAP interpretability analysis** to explain individual predictions to media planning stakeholders
+* **A data quality flagging dashboard** that surfaces suspect records before they reach the model
+
+Known limitations and what we would explore with more time or data will be documented here as the work progresses.
 
 ---
 
 ## 📝 **License**
 
-Specify how your project can be used by others. Choose an appropriate license and link it here (e.g., MIT, Apache 2.0). Make sure your Challenge Advisor approves of the selected license type. 
-
-**Example:**
-This project is licensed under the MIT License.
+*To be selected with approval from our Challenge Advisor.*
 
 ---
 
-## 📄 **References** (Optional but encouraged)
+## 📄 **References**
 
-Cite relevant papers, articles, or resources that supported your project.
+* scikit-learn documentation, preprocessing and regression modules
+* XGBoost documentation
+* pandas documentation
+* SHAP documentation
 
 ---
 
-## 🙏 **Acknowledgements** (Optional but encouraged)
+## 🙏 **Acknowledgements**
+
+Thank you to **WebMD** for hosting this challenge project and providing the campaign data, to our Challenge Advisor **Kimia Naeiji** for the biweekly guidance, and to our AI Studio Coach **Anushka Naik**. Thank you also to the **Break Through Tech AI Program** team for making this studio possible.ents** (Optional but encouraged)
 
 Thank your Challenge Advisor, host company representatives, TA, and others who supported your project.
